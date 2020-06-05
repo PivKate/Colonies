@@ -5,13 +5,13 @@ print("Calculation of results obtained with solid media according to ISO 7218")
 
 conn = sqlite3.connect('microbedb.sqlite3')
 cur = conn.cursor()
-cur.executescript('''
+cur.execute('''
 DROP TABLE IF EXISTS Colonies;''')
 
 choice = int(input("One plate per dilution(1) or two plates per dilution(2)?: "))
 amount = int(input("Enter the number of samples: "))
 if choice == 1:
-    cur.executescript('''
+    cur.execute('''
         CREATE TABLE Colonies (
             id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
             Colonies_first     INTEGER,
@@ -19,10 +19,10 @@ if choice == 1:
             Result             INTEGER,
             Rounding_result    TEXT,
             Final_result       COMPLEX    
-        );
+        )
         ''')
 if choice == 2:
-    cur.executescript('''
+    cur.execute('''
         CREATE TABLE Colonies (
             id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
             Colonies_first1    INTEGER,
@@ -32,7 +32,7 @@ if choice == 2:
             Result             INTEGER,
             Rounding_result    TEXT,
             Final_result       COMPLEX    
-        );
+        )
         ''')
 
 for i in range(amount):
